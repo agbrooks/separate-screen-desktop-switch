@@ -1,0 +1,15 @@
+[Desktop Entry]
+Name=Separate Screen Desktop Switch
+Comment=Switch only the windows on the active screen when switching desktops
+Icon=preferences-desktop-virtual
+
+X-KDE-PluginInfo-Author=Andrew Brooks
+X-KDE-PluginInfo-Email=andrewgrantbrooks@gmail.com
+X-KDE-PluginInfo-Name=separate-screen-desktop-switch
+X-KDE-PluginInfo-Version=1.0
+X-KDE-PluginInfo-License=GPL
+
+Type=Service
+X-KDE-ServiceTypes=KWin/Script
+X-Plasma-API=javascript
+X-Plasma-MainScript=code/main.js
