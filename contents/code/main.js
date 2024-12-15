@@ -5,30 +5,31 @@
  * Behind the scenes, the windows on the current and previous desktop trade
  * places if they're not on the current monitor.
  */
-var previousDesktop = workspace.currentDesktop;
 
-function handleDesktopSwitch() {
+function handleDesktopSwitch(previousDesktop) {
     let currentDesktop = workspace.currentDesktop;
-    // FIXME: If we built and maintained a desktop=>window map, we could cut down on the number of clients
-    // to iterate through.
-    workspace.clientList().forEach(window => {
-        // Windows on the current screen are OK where they are.
-        if (window.screen == workspace.activeScreen) {
-            return;
-        }
-        // "Special" windows shouldn't be swapped.
+    workspace.windowList().forEach(window => {
+        // Don't touch "special" windows!
         if (window.desktopWindow || window.dock || !window.normalWindow) {
+            console.log("Not a normal window: " + window);
             return;
         }
-        // Swap any windows from either current / previous desktops to make it
-        // appear like we didn't change anything.
-        if (window.desktop == currentDesktop) {
-            window.desktop = previousDesktop;
-        } else if (window.desktop == previousDesktop) {
-            window.desktop = currentDesktop;
+        // Windows on the active display are OK, let them move as usual
+        if (window.output == workspace.activeScreen) {
+            console.log("window " + window + " is on active screen, no swap required");
+            return;
+        }
+        // For any windows not on the active display, swap them between current/previous
+        // virtual desktops so that they don't actually appear to move when the virtual
+        // desktop is switched.
+        let currentDesktopIndex = window.desktops.indexOf(currentDesktop);
+        let prevDesktopIndex = window.desktops.indexOf(previousDesktop);
+        if (currentDesktopIndex >= 0) {
+            window.desktops[currentDesktopIndex] = previousDesktop;
+        } else if (prevDesktopIndex >= 0) {
+            window.desktops[prevDesktopIndex] = currentDesktop;
         }
     });
-    previousDesktop = currentDesktop;
 }
 
 workspace.currentDesktopChanged.connect(handleDesktopSwitch);

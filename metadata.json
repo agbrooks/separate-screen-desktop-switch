@@ -1,0 +1,21 @@
+{
+    "KPlugin": {
+        "Name": "Separate Screen Desktop Switch",
+        "Description": "Switch only the windows on the active screen when switching desktops",
+        "Icon": "preferences-desktop-virtual",
+        
+        "Authors": [
+            {
+                "Email": "andrewgrantbrooks@gmail.com",
+                "Name": "Andrew Brooks"
+            }
+        ],
+        "Id": "separate-screen-desktop-switch",
+        "Version": "1.1",
+        "License": "GPL",
+        "Website": "https://github.com/agbrooks/separate-screen-desktop-switch"
+    },
+    "X-Plasma-API": "javascript",
+    "X-Plasma-MainScript": "code/main.js",
+    "KPackageStructure": "KWin/Script"
+}

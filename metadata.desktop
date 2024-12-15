@@ -6,7 +6,7 @@ Icon=preferences-desktop-virtual
 X-KDE-PluginInfo-Author=Andrew Brooks
 X-KDE-PluginInfo-Email=andrewgrantbrooks@gmail.com
 X-KDE-PluginInfo-Name=separate-screen-desktop-switch
-X-KDE-PluginInfo-Version=1.0
+X-KDE-PluginInfo-Version=1.1
 X-KDE-PluginInfo-License=GPL
 
 Type=Service
